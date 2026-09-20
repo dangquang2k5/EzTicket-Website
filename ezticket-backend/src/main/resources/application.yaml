@@ -1,3 +1,33 @@
 spring:
   application:
     name: ezticket-backend
+
+  # --- KẾT NỐI DATABASE NEON.TECH ---
+  datasource:
+    url: jdbc:postgresql://ep-jolly-sound-b3j9te5w.c-4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+    username: neondb_owner
+    password: npg_9mhE6zRtcCoT
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 20000
+
+  # --- CẤU HÌNH HIBERNATE / JPA ---
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  # --- CẤU HÌNH FLYWAY MIGRATION ---
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    baseline-version: 0
+    validate-on-migrate: true
