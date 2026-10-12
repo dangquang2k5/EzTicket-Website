@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  # --- CONTAINER POSTGRESQL 17 ---
+  postgres:
+    image: postgres:17-alpine
+    container_name: ezticket-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ezticket_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ezticket-network
+
+  # --- CONTAINER REDIS ---
+  redis:
+    image: redis:7-alpine
+    container_name: ezticket-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes # Bật chế độ lưu dữ liệu xuống ổ cứng
+    volumes:
+      - redis_data:/data
+    networks:
+      - ezticket-network
+
+# --- ĐỊNH NGHĨA VOLUMES ĐỂ LƯU DỮ LIỆU BỀN VỮNG ---
+volumes:
+  postgres_data:
+  redis_data:
+
+# --- ĐỊNH NGHĨA NETWORK ---
+networks:
+  ezticket-network:
+    driver: bridge

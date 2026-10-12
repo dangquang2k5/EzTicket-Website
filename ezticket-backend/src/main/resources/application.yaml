@@ -2,6 +2,11 @@ spring:
   application:
     name: ezticket-backend
 
+  # --- KÍCH HOẠT VIRTUAL THREADS (JAVA 21) ---
+  threads:
+    virtual:
+      enabled: true
+
   # --- KẾT NỐI DATABASE NEON.TECH ---
   datasource:
     url: jdbc:postgresql://ep-jolly-sound-b3j9te5w.c-4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
@@ -31,3 +36,9 @@ spring:
     baseline-on-migrate: true
     baseline-version: 0
     validate-on-migrate: true
+
+    # --- KẾT NỐI REDIS LOCAL ---
+    data:
+      redis:
+        host: localhost
+        port: 6379
