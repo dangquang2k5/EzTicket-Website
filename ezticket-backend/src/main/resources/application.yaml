@@ -1,4 +1,8 @@
 spring:
+  # --- SCRUM-19: doc bien moi truong tu file .env local (khong commit) ---
+  config:
+    import: optional:file:.env[.properties]
+
   application:
     name: ezticket-backend
 
@@ -7,11 +11,11 @@ spring:
     virtual:
       enabled: true
 
-  # --- KẾT NỐI DATABASE NEON.TECH ---
+  # --- KẾT NỐI DATABASE NEON.TECH (SCRUM-19: qua bien moi truong, ho tro SSL) ---
   datasource:
-    url: jdbc:postgresql://ep-jolly-sound-b3j9te5w.c-4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
-    username: neondb_owner
-    password: npg_9mhE6zRtcCoT
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
@@ -43,8 +47,8 @@ spring:
       host: localhost
       port: 6379
 
-# --- CẤU HÌNH JWT & BẢO MẬT ---
+# --- CẤU HÌNH JWT & BẢO MẬT (SCRUM-19: secret qua bien moi truong) ---
 jwt:
-  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  secret: ${JWT_SECRET}
   access-token-expiration: 900000
   refresh-token-expiration: 604800000

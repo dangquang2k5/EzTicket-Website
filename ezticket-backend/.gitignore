@@ -1,5 +1,8 @@
 HELP.md
 target/
+
+# --- SCRUM-19: khong commit file chua secret local ---
+.env
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
