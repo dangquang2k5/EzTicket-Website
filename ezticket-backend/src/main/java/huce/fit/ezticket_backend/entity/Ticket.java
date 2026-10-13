@@ -63,6 +63,14 @@ public class Ticket {
     @Column(name = "checked_in_at")
     private LocalDateTime checkedInAt;
 
+    // SCRUM-29 [GĐ2] (C-05, Flyway V2): gate + staff who checked the ticket in.
+    @Column(name = "check_in_gate", length = 50)
+    private String checkInGate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "checked_in_by")
+    private User checkedInBy;
+
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
