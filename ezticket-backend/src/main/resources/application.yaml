@@ -37,8 +37,14 @@ spring:
     baseline-version: 0
     validate-on-migrate: true
 
-    # --- KẾT NỐI REDIS LOCAL ---
-    data:
-      redis:
-        host: localhost
-        port: 6379
+  # --- KẾT NỐI REDIS LOCAL ---
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+# --- CẤU HÌNH JWT & BẢO MẬT ---
+jwt:
+  secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  access-token-expiration: 900000
+  refresh-token-expiration: 604800000
