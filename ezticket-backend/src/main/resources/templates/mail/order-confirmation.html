@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Xác nhận đặt vé EzTicket</title>
+  <style>
+    body { margin:0; padding:0; background:#f4f5f7; font-family:Arial,Helvetica,sans-serif; color:#222; }
+    .wrap { max-width:640px; margin:0 auto; padding:24px 12px; }
+    .card { background:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e5e7eb; }
+    .head { background:#111827; color:#fff; padding:24px; text-align:center; }
+    .head h1 { margin:0; font-size:22px; }
+    .head p { margin:8px 0 0; color:#d1d5db; font-size:14px; }
+    .body { padding:24px; }
+    .info { background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px; padding:16px; margin:16px 0; }
+    .info p { margin:6px 0; font-size:14px; }
+    table.items { width:100%; border-collapse:collapse; margin:16px 0; font-size:14px; }
+    table.items th, table.items td { border:1px solid #e5e7eb; padding:10px; text-align:left; }
+    table.items th { background:#f3f4f6; }
+    .total { text-align:right; font-size:16px; font-weight:bold; margin:8px 0 16px; }
+    .guide { background:#eff6ff; border:1px solid #bfdbfe; border-radius:8px; padding:16px; font-size:14px; }
+    .foot { padding:16px 24px 24px; color:#6b7280; font-size:12px; text-align:center; }
+    @media (max-width:480px){ .body{padding:16px;} table.items th, table.items td{padding:8px;} }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="head">
+      <h1>Đặt vé thành công! Vé đã được gửi đến email của bạn.</h1>
+      <p>Cảm ơn bạn đã sử dụng EzTicket</p>
+    </div>
+    <div class="body">
+      <p>Xin chào <strong th:text="${fullName}">Quý khách</strong>,</p>
+      <p>Đơn hàng của bạn đã được thanh toán thành công. Chi tiết đơn hàng:</p>
+      <div class="info">
+        <p>Mã đơn: <strong th:text="${orderCode}">ORD-001</strong></p>
+        <p>Sự kiện: <strong th:text="${eventTitle}">Tên sự kiện</strong></p>
+        <p>Thời gian: <span th:text="${startTime}">20:00 01/01/2026</span></p>
+        <p>Địa điểm: <span th:text="${venue}">Nhà hát Lớn</span></p>
+        <p>Số lượng vé: <span th:text="${ticketCount}">1</span></p>
+      </div>
+      <table class="items">
+        <thead>
+        <tr><th>Hạng vé</th><th>Số lượng</th><th>Đơn giá</th></tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}">
+          <td th:text="${item.name}">VIP</td>
+          <td th:text="${item.quantity}">2</td>
+          <td th:text="${item.unitPrice}">500.000 ₫</td>
+        </tr>
+        </tbody>
+      </table>
+      <p class="total">Tổng tiền: <span th:text="${totalAmount}">1.000.000 ₫</span></p>
+      <div class="guide">
+        <strong>Hướng dẫn check-in:</strong>
+        <ul>
+          <li>Mang theo mã QR trong file PDF đính kèm kèm theo email này để soát vé tại cổng.</li>
+          <li>Vui lòng đến cổng trước giờ bắt đầu ít nhất 30 phút.</li>
+          <li>Mỗi mã QR chỉ sử dụng một lần; không chia sẻ ảnh chụp vé cho người khác.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot">
+      <p>Email tự động từ EzTicket. Vui lòng không trả lời email này.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
