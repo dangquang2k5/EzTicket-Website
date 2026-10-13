@@ -48,3 +48,13 @@ jwt:
   secret: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
   access-token-expiration: 900000
   refresh-token-expiration: 604800000
+
+# --- SCRUM-27: QR + PDF vé điện tử (background worker) ---
+ticket:
+  qr:
+    # Secret ký HMAC-SHA256 cho QR. PROD bắt buộc đặt env TICKET_QR_SECRET.
+    # Giá trị mặc định chỉ dùng cho dev/test, KHÔNG dùng ở production.
+    secret: ${TICKET_QR_SECRET:ezticket-dev-secret-change-me}
+  pdf:
+    # Thư mục lưu file PDF vé đã sinh.
+    storage-dir: ${TICKET_PDF_DIR:./storage/tickets}

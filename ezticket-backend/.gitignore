@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# SCRUM-27: file PDF ve sinh o runtime, khong commit
+storage/
