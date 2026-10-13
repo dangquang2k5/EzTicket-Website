@@ -1,4 +1,4 @@
-package huce.fit.ezticket_backend.service.ticket;
+package huce.fit.ezticket_backend.service;
 
 import huce.fit.ezticket_backend.entity.Event;
 import huce.fit.ezticket_backend.entity.Order;
@@ -10,6 +10,8 @@ import huce.fit.ezticket_backend.entity.enums.OrderStatus;
 import huce.fit.ezticket_backend.repository.OrderItemRepository;
 import huce.fit.ezticket_backend.repository.OrderRepository;
 import huce.fit.ezticket_backend.repository.TicketRepository;
+import huce.fit.ezticket_backend.repository.UserRepository;
+import huce.fit.ezticket_backend.service.pdf.TicketPdfService;
 import huce.fit.ezticket_backend.service.qr.QrPayloadCodec;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,8 +36,12 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+/**
+ * Phat hanh ve cho don PAID (SCRUM-27: BR-08, BR-09, BR-12).
+ * Test bang Mockito, khong can DB/Redis that.
+ */
 @ExtendWith(MockitoExtension.class)
-class TicketsServiceTest {
+class TicketGenerationTest {
 
     @Mock
     private OrderRepository orderRepository;
@@ -43,6 +49,10 @@ class TicketsServiceTest {
     private OrderItemRepository orderItemRepository;
     @Mock
     private TicketRepository ticketRepository;
+    @Mock
+    private UserRepository userRepository;
+    @Mock
+    private TicketPdfService ticketPdfService;
     @Mock
     private QrPayloadCodec qrPayloadCodec;
 

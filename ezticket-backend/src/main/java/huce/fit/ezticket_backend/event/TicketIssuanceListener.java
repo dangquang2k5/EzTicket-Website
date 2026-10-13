@@ -2,7 +2,7 @@ package huce.fit.ezticket_backend.event;
 
 import huce.fit.ezticket_backend.entity.Ticket;
 import huce.fit.ezticket_backend.service.pdf.TicketPdfService;
-import huce.fit.ezticket_backend.service.ticket.TicketsService;
+import huce.fit.ezticket_backend.service.TicketsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
