@@ -57,3 +57,13 @@ app:
     admin-email: ${ADMIN_EMAIL:admin@ezticket.local}
     admin-password: ${ADMIN_PASSWORD:Admin12345}
     admin-name: ${ADMIN_NAME:EzTicket Admin}
+
+# --- SCRUM-27: QR + PDF vé điện tử (background worker) ---
+ticket:
+  qr:
+    # Secret ký HMAC-SHA256 cho QR. PROD bắt buộc đặt env TICKET_QR_SECRET.
+    # Giá trị mặc định chỉ dùng cho dev/test, KHÔNG dùng ở production.
+    secret: ${TICKET_QR_SECRET:ezticket-dev-secret-change-me}
+  pdf:
+    # Thư mục lưu file PDF vé đã sinh.
+    storage-dir: ${TICKET_PDF_DIR:./storage/tickets}
