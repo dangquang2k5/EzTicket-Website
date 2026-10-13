@@ -15,4 +15,6 @@ public interface TicketRepository extends JpaRepository<Ticket, Long> {
     List<Ticket> findByOrderId(Long orderId);
 
     boolean existsByOrderId(Long orderId);
+
+    List<Ticket> findAllByIdIn(List<Long> ids);
 }
