@@ -44,6 +44,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/api/v1/events/**", "/api/v1/categories/**").permitAll()
                         // Tiêu chuẩn 4: Guards ngăn tài khoản thường truy cập endpoint quản trị viên
                         .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                        // <!-- SCRUM-29: [GĐ2] soát vé chỉ trên Web Admin (C-06) -->
+                        .requestMatchers("/api/v1/tickets/verify", "/api/v1/tickets/*/check-in").hasRole("ADMIN")
+                        .requestMatchers("/api/v1/tickets/**").authenticated()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
